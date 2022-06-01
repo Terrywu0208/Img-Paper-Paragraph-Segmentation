@@ -75,23 +75,24 @@ def usual():
     # cv2.imshow("dilate",dilate)
     # cv2.imshow("erode",erode)
     # new = dilate[1]
-    arr = np.array(img)
+    # arr = np.array(dilate)
     # arr = arr[100:237,220:505]
-    arr = arr[142:186,220:505]
+    # arr = arr[142:186,220:505]
     temp = []
-    for i in range(len(arr)):
-        for j in range(len(arr[i])):
-            if 0 in arr[i][j]:
-                try:
-                    if (i - temp[-1]) >8:
-                        print(i,temp[-1])
-                except:
-                    pass
-                temp.append(i)
+    # for i in range(len(arr)):
+    #     for j in range(len(arr[i])):
+    #         if 0 in arr[i][j]:
+    #             try:
+    #                 if (i - temp[-1]) >8:
+    #                     print(i,temp[-1])
+    #             except:
+    #                 pass
+    #             temp.append(i)
             
-    cv2.imshow("erode",arr)
-    # print(len(arr))
-    cv2.waitKey(0)
+    # cv2.imshow("erode",arr)
+    print(dilate[0][0])
+    print(img.shape)
+    # cv2.waitKey(0)
         
 
 usual()
