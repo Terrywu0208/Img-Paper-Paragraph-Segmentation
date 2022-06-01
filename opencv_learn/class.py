@@ -1,3 +1,4 @@
+from operator import le
 import cv2
 import numpy as np
 import random
@@ -57,8 +58,8 @@ def cut_img():
     cv2.waitKey(0)
 
 def usual():
-    img = cv2.imread(r"img\paper0001-06.jpg")
-    img = cv2.resize(img , (0,0), fx=1.5, fy= 1.5)
+    img = cv2.imread(r"../img/paper0008-316.jpg")
+    img = cv2.resize(img , (0,0), fx=0.5, fy= 0.5)
     kernel = np.ones((3,3),np.uint8)
 
     gary = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -67,13 +68,29 @@ def usual():
     dilate = cv2.dilate(canny, kernel , iterations=1) #cv2.dilate(canny, 核 , iterations=次數)
     erode = cv2.erode(dilate, kernel, iterations=1)
 
-    cv2.imshow("img",img)
-    cv2.imshow("gary",gary)
-    cv2.imshow("blur",blur)
-    cv2.imshow("canny",canny)
-    cv2.imshow("dilate",dilate)
-    cv2.imshow("erode",erode)
-    cv2.waitKey(0)
+    # cv2.imshow("img",img)
+    # cv2.imshow("gary",gary)
+    # cv2.imshow("blur",blur)
+    # cv2.imshow("canny",canny)
+    # cv2.imshow("dilate",dilate)
+    # cv2.imshow("erode",erode)
+    # new = dilate[1]
+    arr = np.array(img)
+    # arr = arr[100:237]
+    temp = []
+    for i in range(len(arr)):
+        for j in range(len(arr[i])):
+            if 0 in arr[i][j]:
+                try:
+                    if (i - temp[-1]) >8:
+                        print(i,temp[-1])
+                except:
+                    pass
+                temp.append(i)
+            
+    # cv2.imshow("erode",arr)
+    # print(len(arr))
+    # cv2.waitKey(0)
 
 def draw():
     img = np.zeros((600,600,3),np.uint8)
@@ -92,18 +109,18 @@ def empty(v):
 
 # img = cv2.imread(r"img\winnie.jpg")
 # img = cv2.resize(img,(0,0), fx=0.5, fy=0.5)
-cap = cv2.VideoCapture(0)
+# cap = cv2.VideoCapture(0)
 
 
-cv2.namedWindow("TrackBar")
-cv2.resizeWindow("TrackBar", 640, 320)
+# cv2.namedWindow("TrackBar")
+# cv2.resizeWindow("TrackBar", 640, 320)
 
-cv2.createTrackbar("Hue Min" , "TrackBar", 0, 179, empty)
-cv2.createTrackbar("Hue Max" , "TrackBar", 177, 179, empty)
-cv2.createTrackbar("Sat Min" , "TrackBar", 0, 255, empty)
-cv2.createTrackbar("Sat Max" , "TrackBar", 255, 255, empty)
-cv2.createTrackbar("Val Min" , "TrackBar", 0, 255, empty)
-cv2.createTrackbar("Val Max" , "TrackBar", 255, 255, empty)
+# cv2.createTrackbar("Hue Min" , "TrackBar", 0, 179, empty)
+# cv2.createTrackbar("Hue Max" , "TrackBar", 177, 179, empty)
+# cv2.createTrackbar("Sat Min" , "TrackBar", 0, 255, empty)
+# cv2.createTrackbar("Sat Max" , "TrackBar", 255, 255, empty)
+# cv2.createTrackbar("Val Min" , "TrackBar", 0, 255, empty)
+# cv2.createTrackbar("Val Max" , "TrackBar", 255, 255, empty)
 
 def detcet_geometry():
     img = cv2.imread(r"img\geometry.png")
