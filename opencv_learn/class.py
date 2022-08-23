@@ -75,8 +75,8 @@ def usual():
     # cv2.imshow("dilate",dilate)
     # cv2.imshow("erode",erode)
     # new = dilate[1]
-    # arr = np.array(dilate)
-    # arr = arr[100:237,220:505]
+    arr = np.array(dilate)
+    arr = arr[100:500,220:505]
     # arr = arr[142:186,220:505]
     temp = []
     # for i in range(len(arr)):
@@ -89,10 +89,10 @@ def usual():
     #                 pass
     #             temp.append(i)
             
-    # cv2.imshow("erode",arr)
-    print(dilate[0][0])
+    cv2.imshow("erode",arr)
+    # print(dilate[0][0])
     print(img.shape)
-    # cv2.waitKey(0)
+    cv2.waitKey(0)
         
 
 usual()
